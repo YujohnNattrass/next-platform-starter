@@ -86,13 +86,18 @@ const handler = async (request, context) => {
 
     const querySelectors = ['script', 'link[rel="preload"][as="script"]'];
     console.log(`## BEFORE TRANSFORMER ##`);
-    const transformed = await new HTMLRewriter()
-        .on(querySelectors.join(','), {
-            element(element) {
-                element.setAttribute('nonce', nonce);
-            }
-        })
-        .transform(response);
+    let transformed;
+    try {
+        transformed = await new HTMLRewriter()
+            .on(querySelectors.join(','), {
+                element(element) {
+                    element.setAttribute('nonce', nonce);
+                }
+            })
+            .transform(response);
+    } catch (e) {
+        console.log(`WHAT IS THE ERROR`, e);
+    }
 
     return new Response(transformed.body);
 };
