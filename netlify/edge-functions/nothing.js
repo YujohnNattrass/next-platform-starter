@@ -2,6 +2,7 @@ import { HTMLRewriter } from 'https://raw.githubusercontent.com/worker-tools/htm
 import { randomBytes } from 'node:crypto';
 const handler = async (request, context) => {
     const response = await context.next(request);
+    console.log(`invoking edge function!`);
 
     // for debugging which routes use this edge function
     response.headers.set('x-debug-csp-nonce', 'invoked');
