@@ -85,13 +85,14 @@ const handler = async (request, context) => {
     }
 
     const querySelectors = ['script', 'link[rel="preload"][as="script"]'];
-    return new HTMLRewriter()
+    new HTMLRewriter()
         .on(querySelectors.join(','), {
             element(element) {
                 element.setAttribute('nonce', nonce);
             }
         })
         .transform(response);
+    return;
 };
 
 export default handler;
