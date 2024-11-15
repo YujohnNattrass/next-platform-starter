@@ -98,8 +98,12 @@ const handler = async (request, context) => {
     } catch (e) {
         console.log(`WHAT IS THE ERROR`, e);
     }
-    // const text = await transformed.text();
-    return new Response(transformed.body);
+    const text = await transformed.text();
+    return new Response(text, {
+        status: transformed.status,
+        statusText: transformed.statusText,
+        headers: transformed.headers
+    });
 };
 
 export default handler;
