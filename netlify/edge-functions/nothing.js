@@ -93,7 +93,7 @@ const handler = async (request, context) => {
             }
         })
         .transform(response);
-    const json = transformed.json();
+    const json = await transformed.json();
     console.log(`json`, json);
     console.log(`## AFTER TRANSFORMER ##`);
     return;
