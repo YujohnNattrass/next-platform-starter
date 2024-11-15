@@ -100,7 +100,7 @@ const handler = async (request, context) => {
     }
 
     let body = '';
-    for (const chunk of transformed.body) {
+    for await (const chunk of transformed.body) {
         body += chunk;
     }
     return new Response(body);
