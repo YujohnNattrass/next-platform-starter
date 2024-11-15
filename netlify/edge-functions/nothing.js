@@ -94,7 +94,7 @@ const handler = async (request, context) => {
         })
         .transform(response);
     console.log(`## AFTER TRANSFORMER ##`);
-    return;
+    return transformed;
 };
 
 export default handler;
