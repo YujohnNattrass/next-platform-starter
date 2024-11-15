@@ -95,7 +95,8 @@ const handler = async (request, context) => {
         .transform(response);
 
         try {
-            await transformed.json();
+            const txt = await transformed.text();
+            console.log(txt);
         } catch (e) {
             console.log(`### ERR ###`, e);
         }
