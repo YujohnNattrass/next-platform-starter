@@ -94,7 +94,7 @@ const handler = async (request, context) => {
         })
         .transform(response);
 
-    return new Response(transformed.body());
+    return new Response(transformed.body);
 };
 
 export default handler;
