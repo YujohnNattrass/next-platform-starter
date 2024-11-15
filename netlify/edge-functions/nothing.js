@@ -6,7 +6,7 @@ export default async function nothing(request, context) {
 
     const headers = new Headers(Array.from(req.headers.entries()));
     headers.set('x-nothing', '1');
-    const newReq = new Request(req, {
+    const newReq = new Request(request, {
         headers
     });
 
