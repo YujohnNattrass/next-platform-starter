@@ -94,14 +94,14 @@ const handler = async (request, context) => {
         })
         .transform(response);
 
-        try {
-            const txt = await transformed.text();
-            console.log(txt);
-        } catch (e) {
-            console.log(`### ERR ###`, e);
-        }
+    let txt;
+    try {
+        txt = await transformed.text();
+    } catch (e) {
+        console.log(`### ERR ###`, e);
+    }
     console.log(`## AFTER TRANSFORMER ##`);
-    return;
+    return new Response(txt);
 };
 
 export default handler;
