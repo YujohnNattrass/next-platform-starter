@@ -93,8 +93,9 @@ const handler = async (request, context) => {
             }
         })
         .transform(response);
+        transformed.text().then((x) => console.log(x));
     console.log(`## AFTER TRANSFORMER ##`);
-    return transformed;
+    return;
 };
 
 export default handler;
