@@ -85,6 +85,7 @@ const handler = async (request, context) => {
     }
 
     const querySelectors = ['script', 'link[rel="preload"][as="script"]'];
+    console.log(`## BEFORE TRANSFORMER ##`);
     const transformed = new HTMLRewriter()
         .on(querySelectors.join(','), {
             element(element) {
@@ -92,7 +93,7 @@ const handler = async (request, context) => {
             }
         })
         .transform(response);
-    console.log(transformed);
+    console.log(`## AFTER TRANSFORMER ##`);
     return;
 };
 
