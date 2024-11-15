@@ -93,8 +93,12 @@ const handler = async (request, context) => {
             }
         })
         .transform(response);
-    const json = await transformed.json();
-    console.log(`json`, json);
+
+        try {
+            await transformed.json();
+        } catch (e) {
+            console.log(`### ERR ###`, e);
+        }
     console.log(`## AFTER TRANSFORMER ##`);
     return;
 };
