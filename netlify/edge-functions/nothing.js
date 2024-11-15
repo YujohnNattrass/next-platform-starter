@@ -16,7 +16,7 @@ const handler = async (request, context) => {
     //     return response;
     // }
 
-    let header = params.reportOnly ? 'content-security-policy-report-only' : 'content-security-policy';
+    let header = 'content-security-policy';
 
     // CSP_NONCE_DISTRIBUTION is a number from 0 to 1,
     // but 0 to 100 is also supported, along with a trailing %
@@ -45,17 +45,11 @@ const handler = async (request, context) => {
     // when `'strict-dynamic'` is present, `'unsafe-inline' 'self' https: http:` is ignored by browsers
     // `'unsafe-inline' 'self' https: http:` is a compat check for browsers that don't support `strict-dynamic`
     // https://content-security-policy.com/strict-dynamic/
-    const rules = [
-        `'nonce-${nonce}'`,
-        `'strict-dynamic'`,
-        `'unsafe-inline'`,
-        params.unsafeEval && `'unsafe-eval'`,
-        `'self'`,
-        `https:`,
-        `http:`
-    ].filter(Boolean);
+    const rules = [`'nonce-${nonce}'`, `'strict-dynamic'`, `'unsafe-inline'`, `'self'`, `https:`, `http:`].filter(
+        Boolean
+    );
     const scriptSrc = `script-src ${rules.join(' ')}`;
-    const reportUri = `report-uri ${params.reportUri || '/.netlify/functions/__csp-violations'}`;
+    const reportUri = `report-uri ${'/.netlify/functions/__csp-violations'}`;
 
     const csp = response.headers.get(header);
     if (csp) {
