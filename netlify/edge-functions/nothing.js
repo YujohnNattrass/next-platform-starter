@@ -99,8 +99,7 @@ const handler = async (request, context) => {
         console.log(`WHAT IS THE ERROR`, e);
     }
 
-    response.body = await transformed.text();
-    return response;
+    return transformed;
 };
 
 export default handler;
