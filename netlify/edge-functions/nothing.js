@@ -86,14 +86,14 @@ const handler = async (request, context) => {
 
     const querySelectors = ['script', 'link[rel="preload"][as="script"]'];
     console.log(`## BEFORE TRANSFORMER ##`);
-    const transformed = new HTMLRewriter()
+    const transformed = await new HTMLRewriter()
         .on(querySelectors.join(','), {
             element(element) {
                 element.setAttribute('nonce', nonce);
             }
         })
         .transform(response);
-        transformed.text().then((x) => console.log(x));
+
     console.log(`## AFTER TRANSFORMER ##`);
     return;
 };
