@@ -99,7 +99,11 @@ const handler = async (request, context) => {
         console.log(`WHAT IS THE ERROR`, e);
     }
 
-    return new Response(transformed.body);
+    let body = '';
+    for (const chunk of transformed.body) {
+        body += chunk;
+    }
+    return new Response(body);
 };
 
 export default handler;
