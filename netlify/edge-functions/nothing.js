@@ -98,8 +98,8 @@ const handler = async (request, context) => {
     } catch (e) {
         console.log(`WHAT IS THE ERROR`, e);
     }
-    const resBody = await transformed.bytes();
-    return new Response(resBody, response);
+    // const resBody = await transformed.bytes();
+    return new Response(transformed.body, response);
 };
 
 export default handler;
