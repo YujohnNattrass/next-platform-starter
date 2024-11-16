@@ -98,10 +98,8 @@ const handler = async (request, context) => {
     } catch (e) {
         console.log(`WHAT IS THE ERROR`, e);
     }
-    const resSize = await transformed.bytes();
-    console.log(`### RES SIZE ###`, resSize);
-    const text = await transformed.text();
-    return new Response(text, {
+    const resBody = await transformed.bytes();
+    return new Response(resBody, {
         status: transformed.status,
         statusText: transformed.statusText,
         headers: transformed.headers
