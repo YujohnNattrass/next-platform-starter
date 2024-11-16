@@ -1,7 +1,6 @@
 import { HTMLRewriter } from 'https://raw.githubusercontent.com/worker-tools/html-rewriter/master/index.ts';
 import { randomBytes } from 'node:crypto';
 const handler = async (request, context) => {
-  const func = () => {
     const response = await context.next(request);
     console.log(`invoking edge function!`);
 
@@ -99,9 +98,8 @@ const handler = async (request, context) => {
     } catch (e) {
         console.log(`WHAT IS THE ERROR`, e);
     }
-  }
-    const resSize = await transformed.bytes()
-    console.log(`### RES SIZE ###`, resSize)
+    const resSize = await transformed.bytes();
+    console.log(`### RES SIZE ###`, resSize);
     const text = await transformed.text();
     return new Response(text, {
         status: transformed.status,
