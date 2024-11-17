@@ -99,6 +99,7 @@ const handler = async (request, context) => {
         console.log(`WHAT IS THE ERROR`, e);
     }
 
+    console.log(`## transformed`, transformed);
     return transformed;
     // // const resBody = await transformed.bytes()
     // const newRes = new Response(null, response);
