@@ -100,9 +100,8 @@ const handler = async (request, context) => {
     }
 
     // console.log(`## transformed`, transformed);
-    return transformed.clone();
-    // // const resBody = await transformed.bytes()
-    // const newRes = new Response(null, response);
+    const resBody = await transformed.bytes();
+    const newRes = new Response(resBody, response);
     // transformed.pipe(newRes)
     // return newRes
 };
