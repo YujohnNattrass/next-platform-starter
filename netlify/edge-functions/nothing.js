@@ -101,7 +101,7 @@ const handler = async (request, context) => {
 
     console.log(`## transformed`, transformed);
     const { readable, writable } = new TransformStream();
-    transformed.pipeTo(writable);
+    transformed.body.pipeTo(writable);
     return new Response(readable, transformed);
     // // const resBody = await transformed.bytes()
     // const newRes = new Response(null, response);
