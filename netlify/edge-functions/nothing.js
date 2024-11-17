@@ -1,8 +1,7 @@
 import { HTMLRewriter } from 'https://raw.githubusercontent.com/worker-tools/html-rewriter/master/index.ts';
 import { randomBytes } from 'node:crypto';
 const handler = async (request, context) => {
-    const r = await context.next(request);
-    const response = r.clone();
+    const response = await context.next(request);
     console.log(`invoking edge function!`);
 
     // for debugging which routes use this edge function
@@ -101,7 +100,7 @@ const handler = async (request, context) => {
     }
 
     console.log(`## transformed`, transformed);
-    return transformed;
+    return transformed.clone();
     // // const resBody = await transformed.bytes()
     // const newRes = new Response(null, response);
     // transformed.pipe(newRes)
