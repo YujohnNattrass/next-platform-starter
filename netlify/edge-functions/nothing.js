@@ -2,7 +2,8 @@ import { HTMLRewriter } from 'https://raw.githubusercontent.com/worker-tools/htm
 import { randomBytes } from 'node:crypto';
 const handler = async (request, context) => {
     const response = await context.next(request);
-    console.log(`!!!`, response);
+    console.log(`hello world`);
+    console.log('dataTransforms' in response);
     // for debugging which routes use this edge function
     response.headers.set('x-debug-csp-nonce', 'invoked');
 
@@ -100,6 +101,7 @@ const handler = async (request, context) => {
 
     // console.log(`## transformed`, transformed);
     const resBody = await transformed.bytes();
+    
     return new Response(resBody, response);
     // transformed.pipe(newRes)
     // return newRes
