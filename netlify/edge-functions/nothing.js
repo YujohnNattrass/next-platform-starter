@@ -2,15 +2,7 @@ import { HTMLRewriter } from 'https://raw.githubusercontent.com/worker-tools/htm
 import { randomBytes } from 'node:crypto';
 const handler = async (request, context) => {
     const response = await context.next(request);
-    console.log(`invoking edge function! ${request.url}`);
-
-    for (const [key, value] of response.headers.entries()) {
-        console.log(`RESPONSE HEADER ${key}: ${value}`);
-    }
-
-    for (const [key, value] of request.headers.entries()) {
-        console.log(`REQUEST HEADER ${key}: ${value}`);
-    }
+    console.log(`!!!`, response);
     // for debugging which routes use this edge function
     response.headers.set('x-debug-csp-nonce', 'invoked');
 
@@ -108,7 +100,7 @@ const handler = async (request, context) => {
 
     // console.log(`## transformed`, transformed);
     const resBody = await transformed.bytes();
-    const newRes = new Response(resBody, response);
+    return new Response(resBody, response);
     // transformed.pipe(newRes)
     // return newRes
 };
