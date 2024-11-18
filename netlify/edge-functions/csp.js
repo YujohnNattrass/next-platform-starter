@@ -3,7 +3,7 @@ import { csp } from 'https://deno.land/x/csp_nonce_html_transformer@v2.1.4/src/i
 // @ts-ignore
 
 const params = inputs;
-params.reportUri = params.reportUri || '/.netlify/functions/__csp-violations';
+params.reportUri = `report-uri ${'/.netlify/functions/__csp-violations'}`;
 // @ts-ignore
 params.distribution = Netlify.env.get('CSP_NONCE_DISTRIBUTION');
 
