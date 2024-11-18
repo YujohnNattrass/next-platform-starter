@@ -4,6 +4,13 @@ const handler = async (request, context) => {
     const response = await context.next(request);
     console.log(`invoking edge function! ${request.url}`);
 
+    for (const [key, value] of response.headers.entries()) {
+        console.log(`RESPONSE HEADER ${key}: ${value}`);
+    }
+
+    for (const [key, value] of request.headers.entries()) {
+        console.log(`REQUEST HEADER ${key}: ${value}`);
+    }
     // for debugging which routes use this edge function
     response.headers.set('x-debug-csp-nonce', 'invoked');
 
