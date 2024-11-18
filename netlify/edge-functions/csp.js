@@ -1,6 +1,5 @@
 import { csp } from 'https://deno.land/x/csp_nonce_html_transformer@v2.1.1/src/index.ts';
 const params = {};
-params.reportUri = params.reportUri || '/.netlify/functions/__csp-violations';
 // @ts-ignore
 params.distribution = Netlify.env.get('CSP_NONCE_DISTRIBUTION');
 
