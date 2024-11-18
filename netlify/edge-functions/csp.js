@@ -69,10 +69,12 @@ const excludedExtensions = [
     'zip'
 ];
 
-export const config = {
+export const config: Config = {
     path: '/',
     excludedPath: ['/.netlify*', `**/*.(${excludedExtensions.join('|')})`].concat(params.excludedPath).filter(Boolean),
-    handler
+    handler,
+    onError: 'bypass',
+    method: 'GET'
 };
 
 export default handler;
