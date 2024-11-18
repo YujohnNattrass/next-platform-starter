@@ -1,20 +1,17 @@
-/* eslint-disable */
-import { csp } from 'https://deno.land/x/csp_nonce_html_transformer@v2.1.4/src/index.ts';
+import { csp } from 'https://deno.land/x/csp_nonce_html_transformer@v2.1.1/src/index.ts';
+const params = {};
+params.reportUri = params.reportUri || '/.netlify/functions/__csp-violations';
 // @ts-ignore
+params.distribution = Netlify.env.get('CSP_NONCE_DISTRIBUTION');
 
+params.strictDynamic = true;
+params.unsafeInline = true;
+params.self = true;
+params.https = true;
+params.http = true;
 
 const handler = async (request, context) => {
     const response = await context.next(request);
-    const params = {};
-    params.reportUri = `report-uri ${'/.netlify/functions/__csp-violations'}`;
-    // @ts-ignore
-    params.distribution = Netlify.env.get('CSP_NONCE_DISTRIBUTION');
-
-    params.strictDynamic = true;
-    params.unsafeInline = true;
-    params.self = true;
-    params.https = true;
-    params.http = true;
 
     // for debugging which routes use this edge function
     response.headers.set('x-debug-csp-nonce', 'invoked');
@@ -74,7 +71,9 @@ const excludedExtensions = [
 ];
 
 export const config = {
-    path: '/'
+    path: '/',
+    excludedPath: ['/.netlify*', `**/*.(${excludedExtensions.join('|')})`].concat(params.excludedPath).filter(Boolean),
+    handler
 };
 
 export default handler;
