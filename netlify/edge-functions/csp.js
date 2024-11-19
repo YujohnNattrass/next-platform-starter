@@ -72,9 +72,9 @@ const excludedExtensions = [
 export const config = {
     path: '/',
     excludedPath: ['/.netlify*', `**/*.(${excludedExtensions.join('|')})`].concat(params.excludedPath).filter(Boolean),
-    handler,
+    handler
     // onError: 'bypass',
-    method: 'GET'
+    // method: 'GET'
 };
 
 export default handler;
