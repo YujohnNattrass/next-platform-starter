@@ -73,6 +73,7 @@ export const config = {
     path: '/',
     excludedPath: ['/.netlify*', `**/*.(${excludedExtensions.join('|')})`].concat(params.excludedPath).filter(Boolean),
     handler,
+    onError: 'bypass',
     method: 'GET'
 };
 
