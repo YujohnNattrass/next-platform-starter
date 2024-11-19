@@ -1,4 +1,4 @@
-import { csp } from 'https://deno.land/x/csp_nonce_html_transformer@v2.1.1/src/index.ts';
+import { csp } from 'https://deno.land/x/csp_nonce_html_transformer@v2.1.4/src/index.ts';
 const params = {};
 // @ts-ignore
 params.distribution = Netlify.env.get('CSP_NONCE_DISTRIBUTION');
